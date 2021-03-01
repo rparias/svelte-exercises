@@ -15,6 +15,10 @@
   const changeName = () => {
     name = 'Paul';
   };
+
+  const handleInput = (event: any) => {
+    name = event.target.value;
+  };
 </script>
 
 <main>
@@ -22,6 +26,12 @@
   <h2>My age is {age}</h2>
   <button on:click={increaseAge}>Increase age</button>
   <button on:click={changeName}>Change name</button>
+  <input
+    type="text"
+    placeholder="Your name"
+    value={name}
+    on:input={handleInput}
+  />
 </main>
 
 <style>

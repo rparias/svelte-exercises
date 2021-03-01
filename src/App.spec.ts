@@ -24,3 +24,32 @@ test('changes name when change name button is clicked', async () => {
     await fireEvent.click(button);
     expect(text).toHaveTextContent('Hello PAUL!');
 })
+
+test('Has input for name', () => {
+    const { queryByPlaceholderText } = render(App);
+    const nameInput = queryByPlaceholderText('Your name');
+    expect(nameInput).toBeInTheDocument();
+})
+
+test('Sets value name on name variable', () => {
+    const { queryByPlaceholderText } = render(App);
+    const nameInput = queryByPlaceholderText('Your name');
+    fireEvent.input(nameInput, changeEvent('my-name'));
+    expect(nameInput).toHaveValue('my-name');
+})
+
+test('Changes name on h1 element when a name is inputted', async () => {
+    const { container, queryByPlaceholderText } = render(App);
+    const text = container.querySelector('h1');
+    const nameInput = queryByPlaceholderText('Your name');
+    await fireEvent.input(nameInput, changeEvent('my-name'));
+    expect(text).toHaveTextContent('Hello MY-NAME!');
+})
+
+const changeEvent = (content: string) => {
+    return {
+        target: {
+            value: content,
+        },
+    };
+};
