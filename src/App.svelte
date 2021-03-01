@@ -39,7 +39,7 @@
   <!-- Two-way binding shortcut -->
   <input type="text" placeholder="Your name" bind:value={name} />
 
-  <ContactCard />
+  <ContactCard userName={name} />
 </main>
 
 <style>

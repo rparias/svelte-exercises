@@ -9,8 +9,8 @@ describe('Layout', () => {
         expect(image).toBeInTheDocument();
     });
     it('Has user name in the header', () => {
-        const { getByText } = render(ContactCard);
-        const username = getByText('User Name');
+        const { container } = render(ContactCard);
+        const username = container.querySelector('h1');
         expect(username).toBeInTheDocument();
     });
     it('Has job title in the header', () => {
@@ -23,5 +23,10 @@ describe('Layout', () => {
         const description = getByText('A short description');
         expect(description).toBeInTheDocument();
     });
+    it('Renders the name when props are passed', () => {
+        const { container } = render(ContactCard, { userName: 'Ronald' });
+        const username = container.querySelector('h1');
+        expect(username).toHaveTextContent('Ronald');
+    })
 });
 
