@@ -1,4 +1,6 @@
 <script lang="ts">
+  import ContactCard from './ContactCard.svelte';
+
   export let name: string = 'Ronald';
   let age: number = 1;
 
@@ -36,6 +38,8 @@
 
   <!-- Two-way binding shortcut -->
   <input type="text" placeholder="Your name" bind:value={name} />
+
+  <ContactCard />
 </main>
 
 <style>
