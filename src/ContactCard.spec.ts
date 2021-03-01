@@ -27,6 +27,11 @@ describe('Layout', () => {
         const { container } = render(ContactCard, { userName: 'Ronald' });
         const username = container.querySelector('h1');
         expect(username).toHaveTextContent('Ronald');
-    })
+    });
+    it('Renders the job description when props are passed', () => {
+        const { container } = render(ContactCard, { jobDescription: 'Software Engineer' });
+        const job = container.querySelector('p');
+        expect(job).toHaveTextContent('Software Engineer');
+    });
 });
 

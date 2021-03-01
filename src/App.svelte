@@ -1,12 +1,22 @@
 <script lang="ts">
   import ContactCard from './ContactCard.svelte';
 
-  export let name: string = 'Ronald';
+  interface AppProps {
+    name?: string;
+    jobDescription?: string;
+    image?: string;
+  }
+
+  export let props: AppProps = {
+    name: '',
+    jobDescription: '',
+    image: '',
+  };
   let age: number = 1;
 
-  $: uppercaseName = name.toUpperCase();
+  $: uppercaseName = props.name.toUpperCase();
 
-  $: if (name === 'Paul') {
+  $: if (props.name === 'Paul') {
     console.log('It runs!');
   }
 
@@ -15,31 +25,41 @@
   };
 
   const changeName = () => {
-    name = 'Paul';
+    props.name = 'Paul';
   };
 
   const handleInput = (event: any) => {
-    name = event.target.value;
+    const { name, value } = event.target;
+    props[name] = value;
   };
 </script>
 
 <main>
-  <h1>Hello {uppercaseName}!</h1>
+  <h1>Hello {uppercaseName || 'friend'}!</h1>
   <h2>My age is {age}</h2>
   <button on:click={increaseAge}>Increase age</button>
   <button on:click={changeName}>Change name</button>
+  <label>Name</label>
   <!-- Uni-directional binding -->
-  <!-- <input
+  <input
     type="text"
+    name="name"
     placeholder="Your name"
-    value={name}
+    value={props.name}
     on:input={handleInput}
-  /> -->
-
+  />
   <!-- Two-way binding shortcut -->
-  <input type="text" placeholder="Your name" bind:value={name} />
+  <!-- <input type="text" placeholder="Your name" bind:value={name} /> -->
+  <label>Job Description</label>
+  <input
+    type="text"
+    name="jobDescription"
+    placeholder="Input the job description"
+    value={props.jobDescription}
+    on:input={handleInput}
+  />
 
-  <ContactCard userName={name} />
+  <ContactCard userName={props.name} jobDescription={props.jobDescription} />
 </main>
 
 <style>

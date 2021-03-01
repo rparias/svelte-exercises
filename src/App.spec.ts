@@ -3,8 +3,8 @@ import { fireEvent, render, cleanup } from '@testing-library/svelte';
 import App from './App.svelte';
 
 test('shows proper heading in caps when rendered', () => {
-    const { getByText } = render(App, { name: 'Ronald' });
-    expect(getByText('Hello RONALD!')).toBeInTheDocument();
+    const { getByText } = render(App, { props: { name: 'Ronald' } });
+    expect(getByText('Hello friend!')).toBeInTheDocument();
 })
 
 test('Count age increments when button is clicked', async () => {
@@ -31,11 +31,24 @@ test('Has input for name', () => {
     expect(nameInput).toBeInTheDocument();
 })
 
+test('Has input for job description', () => {
+    const { queryByPlaceholderText } = render(App);
+    const jobInput = queryByPlaceholderText('Input the job description');
+    expect(jobInput).toBeInTheDocument();
+})
+
 test('Sets value name on name variable', () => {
     const { queryByPlaceholderText } = render(App);
     const nameInput = queryByPlaceholderText('Your name');
     fireEvent.input(nameInput, changeEvent('my-name'));
     expect(nameInput).toHaveValue('my-name');
+})
+
+test('Sets job description on jobDescription variable', () => {
+    const { queryByPlaceholderText } = render(App);
+    const jobInput = queryByPlaceholderText('Input the job description');
+    fireEvent.input(jobInput, changeEvent('this is a job description'));
+    expect(jobInput).toHaveValue('this is a job description');
 })
 
 test('Changes name on h1 element when a name is inputted', async () => {

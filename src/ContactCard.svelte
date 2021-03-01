@@ -1,5 +1,6 @@
 <script lang="ts">
   export let userName: string = 'Ronald';
+  export let jobDescription: string = '';
 </script>
 
 <div class="contact-card">
@@ -13,7 +14,7 @@
     </div>
   </header>
   <div class="description">
-    <p>A short description</p>
+    <p>{jobDescription || 'A short description'}</p>
   </div>
 </div>
 
