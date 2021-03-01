@@ -26,12 +26,16 @@
   <h2>My age is {age}</h2>
   <button on:click={increaseAge}>Increase age</button>
   <button on:click={changeName}>Change name</button>
-  <input
+  <!-- Uni-directional binding -->
+  <!-- <input
     type="text"
     placeholder="Your name"
     value={name}
     on:input={handleInput}
-  />
+  /> -->
+
+  <!-- Two-way binding shortcut -->
+  <input type="text" placeholder="Your name" bind:value={name} />
 </main>
 
 <style>
