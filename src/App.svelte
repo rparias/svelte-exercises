@@ -1,15 +1,27 @@
 <script lang="ts">
-  export let name: string;
+  export let name: string = 'Ronald';
   let age: number = 1;
+
+  $: uppercaseName = name.toUpperCase();
+
+  $: if (name === 'Paul') {
+    console.log('It runs!');
+  }
+
   const increaseAge = () => {
     age += 1;
+  };
+
+  const changeName = () => {
+    name = 'Paul';
   };
 </script>
 
 <main>
-  <h1>Hello {name}!</h1>
+  <h1>Hello {uppercaseName}!</h1>
   <h2>My age is {age}</h2>
   <button on:click={increaseAge}>Increase age</button>
+  <button on:click={changeName}>Change name</button>
 </main>
 
 <style>
