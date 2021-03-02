@@ -5,8 +5,7 @@ import type { AppProps } from './DTO/AppProps';
 
 test('shows proper heading in caps when rendered', () => {
     const props: AppProps = { name: 'Ronald' };
-    const { getByText } = render(App, { props });
-    // const { getByText } = render(App, { props: { name: 'Ronald' } });
+    const { getByText } = render(App, props);
     expect(getByText('Hello friend!')).toBeInTheDocument();
 })
 
