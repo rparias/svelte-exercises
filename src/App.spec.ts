@@ -1,9 +1,12 @@
 import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, render, cleanup } from '@testing-library/svelte';
 import App from './App.svelte';
+import type { AppProps } from './DTO/AppProps';
 
 test('shows proper heading in caps when rendered', () => {
-    const { getByText } = render(App, { props: { name: 'Ronald' } });
+    const props: AppProps = { name: 'Ronald' };
+    const { getByText } = render(App, { props });
+    // const { getByText } = render(App, { props: { name: 'Ronald' } });
     expect(getByText('Hello friend!')).toBeInTheDocument();
 })
 

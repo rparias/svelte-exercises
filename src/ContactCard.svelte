@@ -1,5 +1,6 @@
 <script lang="ts">
-  export let userName: string = 'Ronald';
+  export let userName: string = '';
+  export let jobTitle: string = '';
   export let jobDescription: string = '';
 </script>
 
@@ -10,7 +11,7 @@
     </div>
     <div class="user-data">
       <h1>{userName || 'User Name'}</h1>
-      <h2>Job Title</h2>
+      <h2>{jobTitle || 'Job Title'}</h2>
     </div>
   </header>
   <div class="description">

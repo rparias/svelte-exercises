@@ -28,10 +28,20 @@ describe('Layout', () => {
         const username = container.querySelector('h1');
         expect(username).toHaveTextContent('Ronald');
     });
+    it('Renders the job title when props are passed', () => {
+        const { container } = render(ContactCard, { jobTitle: 'Software Engineer' });
+        const jobTitle = container.querySelector('h2');
+        expect(jobTitle).toHaveTextContent('Software Engineer');
+    });
     it('Renders the job description when props are passed', () => {
-        const { container } = render(ContactCard, { jobDescription: 'Software Engineer' });
-        const job = container.querySelector('p');
-        expect(job).toHaveTextContent('Software Engineer');
+        const { container } = render(ContactCard, { jobDescription: 'Software Engineer is an awsome profession' });
+        const jobDescription = container.querySelector('p');
+        expect(jobDescription).toHaveTextContent('Software Engineer is an awsome profession');
+    });
+    it('Renders the words User Name when props are not passed', () => {
+        const { container } = render(ContactCard);
+        const username = container.querySelector('h1');
+        expect(username).toHaveTextContent('User Name');
     });
 });
 

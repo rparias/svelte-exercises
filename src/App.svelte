@@ -1,14 +1,10 @@
 <script lang="ts">
   import ContactCard from './ContactCard.svelte';
-
-  interface AppProps {
-    name?: string;
-    jobDescription?: string;
-    image?: string;
-  }
+  import type { AppProps } from './DTO/AppProps';
 
   export let props: AppProps = {
     name: '',
+    jobTitle: '',
     jobDescription: '',
     image: '',
   };
@@ -39,19 +35,27 @@
   <h2>My age is {age}</h2>
   <button on:click={increaseAge}>Increase age</button>
   <button on:click={changeName}>Change name</button>
-  <label>Name</label>
-  <!-- Uni-directional binding -->
+  <label for="name">Name</label>
   <input
+    id="name"
     type="text"
     name="name"
     placeholder="Your name"
     value={props.name}
     on:input={handleInput}
   />
-  <!-- Two-way binding shortcut -->
-  <!-- <input type="text" placeholder="Your name" bind:value={name} /> -->
-  <label>Job Description</label>
+  <label for="jobTitle">Job title</label>
   <input
+    id="jobTitle"
+    type="text"
+    name="jobTitle"
+    placeholder="Input the job title"
+    value={props.jobTitle}
+    on:input={handleInput}
+  />
+  <label for="jobDescription">Job Description</label>
+  <input
+    id="jobDescription"
     type="text"
     name="jobDescription"
     placeholder="Input the job description"
@@ -59,7 +63,11 @@
     on:input={handleInput}
   />
 
-  <ContactCard userName={props.name} jobDescription={props.jobDescription} />
+  <ContactCard
+    userName={props.name}
+    jobTitle={props.jobTitle}
+    jobDescription={props.jobDescription}
+  />
 </main>
 
 <style>
