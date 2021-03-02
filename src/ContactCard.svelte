@@ -2,12 +2,13 @@
   export let userName: string = '';
   export let jobTitle: string = '';
   export let jobDescription: string = '';
+  export let imageUrl: string = '';
 </script>
 
 <div class="contact-card">
   <header>
     <div class="thumb">
-      <img src="" alt="" />
+      <img src={imageUrl} alt="" />
     </div>
     <div class="user-data">
       <h1>{userName || 'User Name'}</h1>

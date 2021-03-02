@@ -62,11 +62,21 @@
     value={props.jobDescription}
     on:input={handleInput}
   />
+  <label for="image">Image URL</label>
+  <input
+    id="image"
+    type="text"
+    name="image"
+    placeholder="URL"
+    value={props.image}
+    on:input={handleInput}
+  />
 
   <ContactCard
     userName={props.name}
     jobTitle={props.jobTitle}
     jobDescription={props.jobDescription}
+    imageUrl={props.image}
   />
 </main>
 
