@@ -3,4 +3,5 @@ export interface AppProps {
     jobTitle?: string;
     jobDescription?: string;
     image?: string;
+    done?: boolean
 }

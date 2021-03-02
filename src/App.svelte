@@ -7,6 +7,7 @@
     jobTitle: '',
     jobDescription: '',
     image: '',
+    done: false,
   };
   let age: number = 1;
 
@@ -25,6 +26,14 @@
   const handleInput = (event: any) => {
     const { name, value } = event.target;
     props[name] = value;
+  };
+
+  const handleClick = () => {
+    props.done =
+      props.name.trim().length > 0 &&
+      props.jobTitle.trim().length > 0 &&
+      props.jobTitle.trim().length > 0 &&
+      props.image.trim().length > 0;
   };
 </script>
 
@@ -69,13 +78,18 @@
     value={props.image}
     on:input={handleInput}
   />
+  <button on:click={handleClick}>Continue</button>
 
-  <ContactCard
-    userName={props.name}
-    jobTitle={props.jobTitle}
-    jobDescription={props.jobDescription}
-    imageUrl={props.image}
-  />
+  {#if props.done}
+    <ContactCard
+      userName={props.name}
+      jobTitle={props.jobTitle}
+      jobDescription={props.jobDescription}
+      imageUrl={props.image}
+    />
+  {:else}
+    <p>Please fill the above form</p>
+  {/if}
 </main>
 
 <style>
